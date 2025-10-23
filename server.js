@@ -8,7 +8,7 @@ const PORT = 3000;
 app.use(express.static('.'));
 
 app.get('/api/games', (req, res) => {
-  const gamesDir = path.join(__dirname, 'Games');
+  const gamesDir = path.join(__dirname, 'games');
   const games = [];
 
   if (fs.existsSync(gamesDir)) {
@@ -18,7 +18,7 @@ app.get('/api/games', (req, res) => {
       if (fs.existsSync(indexPath)) {
         games.push({
           title: folder,
-          entry: `/Games/${folder}/index.html`
+          entry: `/games/${folder}/index.html`
         });
       } else {
         games.push({
