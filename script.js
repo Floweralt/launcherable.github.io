@@ -1,6 +1,6 @@
 async function loadGames() {
   try {
-    const res = await fetch("games.json");
+    const res = await fetch("/api/games");
     const games = await res.json();
 
     const gameGrid = document.getElementById("gameGrid");
@@ -12,10 +12,10 @@ async function loadGames() {
     gameGrid.innerHTML = "";
 
     const gameIcons = {
-      'Baldi': '',
-      'Bendy': '',
-      'FNAF': '',
-      'FNAF 1': ''
+      'Baldi': '📚',
+      'Bendy': '🎨',
+      'FNAF': '🐻',
+      'FNAF 1': '🐻'
     };
 
     const availableGames = [];
@@ -29,13 +29,11 @@ async function loadGames() {
       }
     });
 
-    // Update game count
     const totalAvailableGames = availableGames.length;
     gameCount.textContent = `${totalAvailableGames} Game${totalAvailableGames !== 1 ? 's' : ''}`;
 
     let activeCard = null;
 
-    // Create and append available game cards
     availableGames.forEach(game => {
       const card = document.createElement("div");
       card.className = "game-card";
@@ -70,7 +68,6 @@ async function loadGames() {
       gameGrid.appendChild(card);
     });
 
-    // Create and append coming soon game cards
     comingSoonGames.forEach(game => {
       const card = document.createElement("div");
       card.className = "game-card disabled";
